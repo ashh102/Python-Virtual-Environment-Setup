@@ -77,15 +77,15 @@ calc_screen_center () {
 
 # Sets up regular env
 setup_env () {
-	green_print "Starting setup.  This will take a minute..."
+    green_print "Starting setup.  This will take a minute..."
     mkdir -p $MAIN_REPO && green_print "Local folder created at $MAIN_REPO..."
     cd "$TAR_PATH"
     cp -u -p -- $tarFile $MAIN_REPO && green_print "tar file copied..."
     cd $MAIN_REPO
-	tar -xzf $tarFile && green_print "tar file unpacked..."
-	python -m venv env
-	source env/bin/activate && green_print "Virtual environment active..."
-	cd $trimmedTar
+    tar -xzf $tarFile && green_print "tar file unpacked..."
+    python -m venv env
+    source env/bin/activate && green_print "Virtual environment active..."
+    cd $trimmedTar
     green_print "Installing requirements..."
     # ENTER INSTALL COMMAND FOR REQUIREMENTS.TXT HERE 
     green_print "Setup complete."
@@ -99,7 +99,7 @@ setup_env_dev () {
     cp -u -p -- $tarFile $MAIN_REPO
     cd $MAIN_REPO
     tar -xzf $tarFile
-	python -m venv env
+    python -m venv env
     source env/bin/activate
     cd $trimmedTar
     # ENTER INSTALL COMMAND FOR REQUIREMENTS.TXT HERE
@@ -183,34 +183,34 @@ instruction_builder () {
 
 # Run instructions
 print_run_instructions () {
-	# --------------------------
-	# Header
-	# --------------------------
-	instruction_builder "INSTRUCTIONS FOR SETTING UP VIRTUAL ENVIRONMENT AND RUNNING SCRIPTS MANUALLY" "title"
-	instruction_builder "DO NOT CLOSE THIS WINDOW.  RUN EVERYTHING HERE." "warning"
+    # --------------------------
+    # Header
+    # --------------------------
+    instruction_builder "INSTRUCTIONS FOR SETTING UP VIRTUAL ENVIRONMENT AND RUNNING SCRIPTS MANUALLY" "title"
+    instruction_builder "DO NOT CLOSE THIS WINDOW.  RUN EVERYTHING HERE." "warning"
 
-	# --------------------------
-	# Step 1
-	# --------------------------
+    # --------------------------
+    # Step 1
+    # --------------------------
     instruction_builder "STEP 1: First, you must ensure that you are in the right directory.  To do this, copy and paste the following command on the command line and run it." "step"
-	instruction_builder "cd $MAIN_REPO/$trimmedtar" "command" ""
+    instruction_builder "cd $MAIN_REPO/$trimmedtar" "command" ""
 
-	# --------------------------
-	# Step 2
-	# --------------------------
-	instruction_builder "STEP 2: Now you need to create and activate your virtual environment.  To do this, copy and paste the following commands individually on the command line and run them independently." "step"
-	instruction_builder "python -m venv env" "command" ""
-	instruction_builder "source env/bin/activate" "command" "1"
-	instruction_builder "***Once this step is completed, \"(env)\" will be at the bottom of every command you execute***" "info"
+    # --------------------------
+    # Step 2
+    # --------------------------
+    instruction_builder "STEP 2: Now you need to create and activate your virtual environment.  To do this, copy and paste the following commands individually on the command line and run them independently." "step"
+    instruction_builder "python -m venv env" "command" ""
+    instruction_builder "source env/bin/activate" "command" "1"
+    instruction_builder "***Once this step is completed, \"(env)\" will be at the bottom of every command you execute***" "info"
 
-	# --------------------------
-	# Step 3
-	# --------------------------
-	instruction_builder "STEP 3: Next, ENTER INSTRUCTIONS FOR RUNNING SCRIPT 1 HERE.  To do this, copy and paste the following command on the command line and run it." "step"
-	instruction_builder "ENTER COMMAND HERE" "command" ""
-	instruction_builder "Window 1: ENTER UI INSTRUCTIONS HERE IF SCRIPT OPENS ANOTHER WINDOW." "popup"
-	instruction_builder "Window 2: ENTER UI INSTRUCTIONS HERE IF SCRIPT OPENS ANOTHER WINDOW." "popup" 
-	instruction_builder "***Note: ADD ANY IMPORTANT INFO HERE.***" "info"
+    # --------------------------
+    # Step 3
+    # --------------------------
+    instruction_builder "STEP 3: Next, ENTER INSTRUCTIONS FOR RUNNING SCRIPT 1 HERE.  To do this, copy and paste the following command on the command line and run it." "step"
+    instruction_builder "ENTER COMMAND HERE" "command" ""
+    instruction_builder "Window 1: ENTER UI INSTRUCTIONS HERE IF SCRIPT OPENS ANOTHER WINDOW." "popup"
+    instruction_builder "Window 2: ENTER UI INSTRUCTIONS HERE IF SCRIPT OPENS ANOTHER WINDOW." "popup" 
+    instruction_builder "***Note: ADD ANY IMPORTANT INFO HERE.***" "info"
 
     # --------------------------
     # Footer
@@ -223,17 +223,17 @@ print_run_instructions () {
 print_popup_instructions () {
 
     # --------------------------
-	# Header
-	# --------------------------
-	instruction_builder "INSTRUCTIONS FOR POP-UP WINDOWS" "title"
-	instruction_builder "DO NOT CLOSE THIS WINDOW. IF YOU CLOSE THE POP-UP WINDOWS YOU WILL HAVE TO START OVER." "warning"
+    # Header
+    # --------------------------
+    instruction_builder "INSTRUCTIONS FOR POP-UP WINDOWS" "title"
+    instruction_builder "DO NOT CLOSE THIS WINDOW. IF YOU CLOSE THE POP-UP WINDOWS YOU WILL HAVE TO START OVER." "warning"
 
-	# --------------------------
-	# Popup 1 and 2
-	# --------------------------
-	instruction_builder "Window 1: ENTER UI INSTRUCTIONS HERE IF SCRIPT OPENS ANOTHER WINDOW." "step"
-	instruction_builder "Window 2: ENTER UI INSTRUCTIONS HERE IF SCRIPT OPENS ANOTHER WINDOW." "step"
-	instruciton_builder "***Note: ADD ANY IMPORTANT INFO HERE.***" "info"
+    # --------------------------
+    # Popup 1 and 2
+    # --------------------------
+    instruction_builder "Window 1: ENTER UI INSTRUCTIONS HERE IF SCRIPT OPENS ANOTHER WINDOW." "step"
+    instruction_builder "Window 2: ENTER UI INSTRUCTIONS HERE IF SCRIPT OPENS ANOTHER WINDOW." "step"
+    instruciton_builder "***Note: ADD ANY IMPORTANT INFO HERE.***" "info"
 
     # --------------------------
     # Footer
@@ -265,44 +265,44 @@ while [[ ! $answer =~ Y|y|N|n|Q|q ]]; do
     case $answer in
         Y|y)
             CLONED_REPO="$MAIN_REPO/REPONAME"
-		    mkdir -p $CLONED_REPO
-		    git clone "REMOVE THE QUOTES AND ADD THE REPO LINK HERE" "$CLONED_REPO"
-		    cd $CLONED_REPO
-		    green_print "Repo cloned successfully. Repo located at $CLONED_REPO"
+            mkdir -p $CLONED_REPO
+            git clone "REMOVE THE QUOTES AND ADD THE REPO LINK HERE" "$CLONED_REPO"
+            cd $CLONED_REPO
+            green_print "Repo cloned successfully. Repo located at $CLONED_REPO"
             setup_env_dev
             print_run_instructions
             ;;
-	    N|n)
+        N|n)
             docsAnswer=
             while [[ ! $docsAnswer =~ S|s|I|i|Q|q ]]; do
-                read -p "Do you want to ENTER SCRIPT 1 OPERATION HERE or display instructions on how to manually run the script?  (S)cript1/(I)nstructions/(Q)uit " docsAnswer
-		        case $docsAnswer in 
-			        S|s)
-				        print_popup_instructions
-				        setup_env
-				        exec_script_1
-				        print_run_instructions
-				        ;;
-			        I|i)
-				        setup_env
-				        print_run_instructions
-				        ;;
-			        Q|q)
-				        green_print "Exited successfully."
-				        exit
-				        ;;
-			        *)
-				        red_print "Invalid entry.  Try again..."
-				        ;;
-		        esac
+            read -p "Do you want to ENTER SCRIPT 1 OPERATION HERE or display instructions on how to manually run the script?  (S)cript1/(I)nstructions/(Q)uit " docsAnswer
+	        case $docsAnswer in 
+                S|s)
+                    print_popup_instructions
+                    setup_env
+                    exec_script_1
+                    print_run_instructions
+                    ;;
+                I|i)
+                    setup_env
+                    print_run_instructions
+                    ;;
+                Q|q)
+                    green_print "Exited successfully."
+                    exit
+                    ;;
+                *)
+                    red_print "Invalid entry.  Try again..."
+                    ;;
+                esac
             done
-		    ;;
-	    Q|q)
-		    green_print "Exited successfully."
-		    exit
-		    ;;
-	    *)
-		    red_print "Invalid entry.  Try again..."
-		    ;;
+            ;;
+        Q|q)
+            green_print "Exited successfully."
+            exit
+            ;;
+        *)
+            red_print "Invalid entry.  Try again..."
+            ;;
     esac
 done
