@@ -277,23 +277,23 @@ while [[ ! $answer =~ Y|y|N|n|Q|q ]]; do
             while [[ ! $docsAnswer =~ S|s|I|i|Q|q ]]; do
             read -p "Do you want to ENTER SCRIPT 1 OPERATION HERE or display instructions on how to manually run the script?  (S)cript1/(I)nstructions/(Q)uit " docsAnswer
 	        case $docsAnswer in 
-                S|s)
-                    print_popup_instructions
-                    setup_env
-                    exec_script_1
-                    print_run_instructions
-                    ;;
-                I|i)
-                    setup_env
-                    print_run_instructions
-                    ;;
-                Q|q)
-                    green_print "Exited successfully."
-                    exit
-                    ;;
-                *)
-                    red_print "Invalid entry.  Try again..."
-                    ;;
+                    S|s)
+                        print_popup_instructions
+                        setup_env
+                        exec_script_1
+                        print_run_instructions
+                        ;;
+                    I|i)
+                        setup_env
+                        print_run_instructions
+                        ;;
+                    Q|q)
+                        green_print "Exited successfully."
+                        exit
+                        ;;
+                    *)
+                        red_print "Invalid entry.  Try again..."
+                        ;;
                 esac
             done
             ;;
